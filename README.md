@@ -1,4 +1,7 @@
 # TARDIS
+
+![xclock demo](https://i.imgur.com/UnFYuLs.gif)
+
 Trace And Rewrite Delays In Syscalls: Hooking time-related Linux syscalls to warp a process's perspective of time.
 
 This code is rather buggy, mainly due to my lack of understanding of the ptrace API.
