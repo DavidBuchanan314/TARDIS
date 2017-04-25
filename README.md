@@ -20,9 +20,27 @@ $ ./tardis 10 10 /bin/sh
 
 ## Notes:
 
+- Currently only x86_64 Linux is supported. It should be possible to port to i386 with fairly minimal effort.
+
 - `novdso.so` is preloaded to prevent libc from using vDSO - otherwise `ptrace(PTRACE_SYSCALL, ...)`
 wouldn't work for those syscalls (Take a look at `man vdso` for more information). You might need to
 modify the `LD_PRELOAD` value to be an absolute path for some programs/environments, I only made it
 relative for simplicity.
 
 - Certain simple programs, like `glxgears`, don't mind being run with time flowing in reverse! Most programs don't however, and of course there's no way to have a negative delay.
+
+- There are many more syscalls that I still need to handle.
+
+Currently handled syscalls:
+
+- `nanosleep`
+
+- `select`
+
+- `poll`
+
+- `gettimeofday`
+
+- `clock_gettime`
+
+- `time`
