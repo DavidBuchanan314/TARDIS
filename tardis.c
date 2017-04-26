@@ -16,7 +16,7 @@
 
 #define MICROSECONDS 1000000
 #define NANOSECONDS (MICROSECONDS*1000)
-#define NUM_SYSCALLS SYS_pkey_free+1 // XXX: may change in future
+#define NUM_SYSCALLS 512 // this is higher than the real number, but shouldn't matter
 #define PID_MAX 32768 // XXX: assumption
 #define NUM_CLKIDS 16 // XXX: incorrect, but "works" anyway
 
@@ -145,7 +145,7 @@ int main(int argc, char *argv[], char *envp[]) {
 	
 	if(child == 0) {
 		/* child */
-		envp[0] = "LD_PRELOAD=./novdso.so"; // FIXME: Do something more sensible
+		envp[0] = "LD_PRELOAD=/tmp/novdso.so"; // FIXME: Do something more sensible
 		kill(getpid(), SIGSTOP);
 		execvpe(argv[3], &argv[3], envp);
 		perror("execvpe"); // execvpe only returns on error
