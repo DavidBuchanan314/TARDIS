@@ -145,7 +145,7 @@ int main(int argc, char *argv[], char *envp[]) {
 	
 	if(child == 0) {
 		/* child */
-		envp[0] = "LD_PRELOAD=/tmp/novdso.so"; // FIXME: Do something more sensible
+		envp[0] = "LD_PRELOAD=./novdso.so"; // FIXME: Do something more sensible
 		kill(getpid(), SIGSTOP);
 		execvpe(argv[3], &argv[3], envp);
 		perror("execvpe"); // execvpe only returns on error
