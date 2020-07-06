@@ -5,3 +5,6 @@ tardis: tardis.c
 
 novdso.so: novdso.c
 	gcc -std=c99 -Wall -fPIC -shared -o novdso.so novdso.c
+
+clean:
+	rm -f tardis novdso.so

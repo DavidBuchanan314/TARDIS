@@ -36,13 +36,9 @@ relative for simplicity.
 Currently handled syscalls:
 
 - `nanosleep`
-
+- `clock_nanosleep`
 - `select`
-
 - `poll`
-
 - `gettimeofday`
-
 - `clock_gettime`
-
 - `time`
