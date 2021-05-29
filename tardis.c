@@ -169,15 +169,17 @@ int main(int argc, char *argv[], char *envp[]) {
 		perror("execvpe"); // execvpe only returns on error
 		exit(-1);
 	}
-	
-	fprintf(stderr, "Child spawned with PID %d\n", child);
-	
+	#ifdef DEBUG
+	    fprintf(stderr, "Child spawned with PID %d\n", child);
+	#endif
 	ptrace(PTRACE_SEIZE, child, 0, PTRACE_O_TRACESYSGOOD | PTRACE_O_TRACEEXEC | PTRACE_O_EXITKILL | PTRACE_O_TRACEFORK | PTRACE_O_TRACEVFORK | PTRACE_O_TRACECLONE);
 	wait(NULL); // wait for SIGSTOP to happen
 	ptrace(PTRACE_SYSCALL, child, 0, 0); // continue execution
 	
 	if (is64bit(child)) {
-		fprintf(stderr, "Child is 64-bit\n");
+		#ifdef DEBUG
+		    fprintf(stderr, "Child is 64-bit\n");
+		#endif
 	} else {
 		fprintf(stderr, "ERROR: 32-bit processes are currently unsupported\n");
 		exit(-1);
