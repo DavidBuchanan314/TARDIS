@@ -15,3 +15,7 @@ int gettimeofday(void * tv, void * tz) {
 int time(void * tloc) {
 	return syscall(SYS_time, tloc);
 }
+
+int nanosleep(const struct timespec *req, struct timespec *rem) {
+        return syscall(SYS_nanosleep,req,rem);
+}
