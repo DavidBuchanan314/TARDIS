@@ -191,7 +191,7 @@ int main(int argc, char *argv[], char *envp[]) {
 		pid_t pid = waitpid(-1, &status, 0);
 		if (WIFEXITED(status)) {
 			if (pid == child) {
-				break;
+				exit(WEXITSTATUS(status));
 			} else {
 				continue;
 			}
@@ -227,6 +227,4 @@ int main(int argc, char *argv[], char *envp[]) {
 		leavesys[pid] ^= true;
 		ptrace(PTRACE_SYSCALL, pid, 0, 0);
 	}
-	
-	exit(EXIT_SUCCESS);
 }
